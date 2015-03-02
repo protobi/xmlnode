@@ -9,7 +9,7 @@ or
 `<script type="text/javascript" src="https://rawgithub.com"
 
 # Use
-Here's an example generating the styles
+Here's an example generating the base for `xl/styles.xml` inside an Excel .xlsx document:
 
 ```js
 var XmlNode = require('./xmlnode');

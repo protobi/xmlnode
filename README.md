@@ -51,7 +51,7 @@ You'd think writing XML strings is a solved problem by now.  There's cheerio.js 
 But no, it's surprisingly a hassle to write XML cross platforms.
 
  * Cheerio.js is super easy, but you have to tell it XML mode `cheerio('<patternFill>', null, null, {xmlMode: true})`
- * jQuery `$('<patternFill')` lower cases tag names on creation, so you have to use `$el = jQuery.parseXml(<patternFill>)`
+ * jQuery `$('<patternFill')` lower cases tag names on creation, so you have to use `$el = jQuery.parseXML('<patternFill>')`
  * jQuery `$el.html()` includes only the inner HTML, so you have to use `$el[0].outerHTML` to get the outer html
  * jQuery `outerHTML` lower cases the tag names, so you have to use `XMLSerializer`
  * And jQuery `outerHTML` [isn't defined in IE 10 or IE11](http://stackoverflow.com/questions/28799419/how-to-reliably-convert-xml-to-string-in-ie-10-11)

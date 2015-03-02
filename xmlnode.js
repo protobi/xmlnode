@@ -1,4 +1,3 @@
-
 // Support  CommonJS, AMD or independent user
 //http://stackoverflow.com/questions/13673346/supporting-both-commonjs-and-amd
 (function (name, definition) {

@@ -1,6 +1,5 @@
 # XmlNode
 
-
 Simple XML String generator that works across platforms, including Node.js, Chrome and IE.
 
 # Install

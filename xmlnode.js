@@ -37,6 +37,56 @@ return (function () {
     return this;
   }
 
+  //from http://archive.oreilly.com/pub/h/2127
+  var APOS = "'"; QUOTE = '"'
+  var ESCAPED_QUOTE = {  }
+  ESCAPED_QUOTE[QUOTE] = '&quot;'
+  ESCAPED_QUOTE[APOS] = '&apos;'
+
+  XmlNode.prototype.escapeAttributeValue = function(att_value) {
+
+    var att_value;
+    var apos_pos, quot_pos;
+    var use_quote, escape, quote_to_escape;
+    var att_str;
+    var re;
+    var result = ''
+
+
+    // Find first quote marks if any
+    apos_pos = att_value.indexOf(APOS)
+    quot_pos = att_value.indexOf(QUOTE)
+
+    // Determine which quote type to use around
+    // the attribute value
+    if (apos_pos == -1 && quot_pos == -1) {
+      att_str = ' ' + att + "='" + att_value +  "'"
+      result += att_str
+
+    }
+    else {
+      // Prefer the single quote unless forced to use double
+      if (quot_pos != -1 && quot_pos < apos_pos) {
+        use_quote = APOS
+      }
+      else {
+        use_quote = QUOTE
+      }
+
+      // Figure out which kind of quote to escape
+      // Use nice dictionary instead of yucky if-else nests
+      escape = ESCAPED_QUOTE[use_quote]
+
+      // Escape only the right kind of quote
+      re = new RegExp(use_quote,'g')
+      att_str = ' ' + att + '=' + use_quote +
+          att_value.replace(re, escape) + use_quote
+      result += att_str
+    }
+    return result
+  }
+
+
   XmlNode.prototype.attr = function (attr, value) {
     if (arguments.length == 0) {
       return this._attributes;
@@ -61,7 +111,7 @@ return (function () {
     xml += '<' + node.tagName;
     if (node._attributes) {
       for (var key in node._attributes) {
-        xml += ' ' + key + '="' + node._attributes[key] + '"'
+        xml += ' ' + key + '="' + this.escapeAttributeValue(''+node._attributes[key]) + '"'ore
       }
     }
     if (node._children && node._children.length > 0) {

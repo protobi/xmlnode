@@ -60,7 +60,7 @@ return (function () {
     // Determine which quote type to use around
     // the attribute value
     if (apos_pos == -1 && quot_pos == -1) {
-      att_str = ' ' + att + "='" + att_value +  "'"
+      att_str =  "'" + att_value +  "'"
       result += att_str
 
     }
@@ -79,7 +79,7 @@ return (function () {
 
       // Escape only the right kind of quote
       re = new RegExp(use_quote,'g')
-      att_str = ' ' + att + '=' + use_quote +
+      att_str =  use_quote +
           att_value.replace(re, escape) + use_quote
       result += att_str
     }
@@ -111,7 +111,7 @@ return (function () {
     xml += '<' + node.tagName;
     if (node._attributes) {
       for (var key in node._attributes) {
-        xml += ' ' + key + '="' + this.escapeAttributeValue(''+node._attributes[key]) + '"'ore
+        xml += ' ' + key + '=' + this.escapeAttributeValue(''+node._attributes[key]) 
       }
     }
     if (node._children && node._children.length > 0) {

@@ -46,9 +46,7 @@ console.log($styles.toXml());
 ```
 
 ## Motivation
-You'd think writing XML strings is a solved problem by now.  There's cheerio.js and JSDom on the server, and there's jQuery on the browser.
-
-But no, it's surprisingly a hassle to write XML cross platforms.
+I assumed XML strings is a solved problem by now.  There's cheerio.js and JSDom on the server, and there's jQuery on the browser. But it's surprisingly a hassle to write XML cross platforms.  In the end it was easier to write a small library than to adapt an exisiting framework.
 
  * Cheerio.js is super easy, but you have to tell it XML mode `cheerio('<patternFill>', null, null, {xmlMode: true})`
  * jQuery `$('<patternFill')` lower cases tag names on creation, so you have to use `$el = jQuery.parseXML('<patternFill>')`
@@ -63,8 +61,5 @@ of references and add attributes and content dynamically as your model changes. 
 A common alternative is writing strings by hand, as in `var xml = '<fonts count="+fonts.counts+'"><font name="'+font[i].name + '" sz="+font[i].sz+'"></font>";...`   But then you encounter embedded quotes which need escaping, and different kinds of quotes.  That's no fun either.  
 
 Here use use a simple function from O'Reilly (http://archive.oreilly.com/pub/h/2127) inside a jQuery/cheerio-like wrapper.
-
-
-XmlNode is a few bytes of simplicity.  
 
 
